@@ -20,7 +20,7 @@ namespace Domain.Models
         public int FamousID { get; set; }
         [Column(TypeName = "varchar(200)")]
         public string Character { get; set; }
-        [Column(TypeName = "int")]
+        [Column(TypeName = "varchar(4)")]
         public string Year { get; set; }
 
     }

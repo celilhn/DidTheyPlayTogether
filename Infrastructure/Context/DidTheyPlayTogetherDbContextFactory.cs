@@ -18,12 +18,12 @@ namespace Infrastructure.Context
             var folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(Path.Combine(folderPath, "sharedsettings.json"), false, true)
-                .AddJsonFile(Path.Combine(folderPath, "appsettings.json"), false, true)
+                //.AddJsonFile(Path.Combine(folderPath, "sharedsettings.json"), false, true)
+                //.AddJsonFile(Path.Combine(folderPath, "appsettings.json"), false, true)
                 .AddEnvironmentVariables()
                 .Build();
 
-            optionsBuilder.UseSqlServer("server=37.131.255.156; user={0}; password={1}; database=FUNTASY;");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-OUS3O83;Initial Catalog=DİDTHEYPLAYTOGETHER;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             return new DidTheyPlayTogetherDbContext(optionsBuilder.Options);
         }
     }

@@ -22,7 +22,7 @@ namespace Domain.Models
         public string Character { get; set; }
         [Column(TypeName = "int")]
         public int ContributionID { get; set; }
-        [Column(TypeName = "int")]
+        [Column(TypeName = "varchar(4)")]
         public string Year { get; set; }
     }
 }
