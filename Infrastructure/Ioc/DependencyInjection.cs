@@ -28,6 +28,8 @@ namespace Infrastructure.Ioc
         {
             services.AddScoped<IFamousService, FamousService>();
             services.AddScoped<IFamousRepository, FamousRepository>();
+            services.AddScoped<ISerieService, SerieService>();
+            services.AddScoped<ISerieRepository, SerieRepository>();
             services.AddDbContext<DidTheyPlayTogetherDbContext>(options => options.UseSqlServer(
                    GetDbConnectionText(),
                    b => b.MigrationsAssembly(typeof(DidTheyPlayTogetherDbContext).Assembly.FullName)));

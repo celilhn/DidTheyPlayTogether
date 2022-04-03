@@ -14,10 +14,10 @@ namespace Domain.Models
     {
         [Column(TypeName = "varchar(200)")]
         public string Name { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime FirstEpisodeAirDate { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime LastEpisodeAirDate { get; set; }
+        [Column(TypeName = "int")]
+        public int FirstEpisodeAirDate { get; set; }
+        [Column(TypeName = "int")]
+        public int LastEpisodeAirDate { get; set; }
         [Column(TypeName = "int")]
         public int NumberofSeasons { get; set; }
         [Column(TypeName = "int")]
@@ -26,5 +26,7 @@ namespace Domain.Models
         public string Channel { get; set; }
         [Column(TypeName = "varchar(200)")]
         public string Producer { get; set; }
+        [Column(TypeName = "varchar(200)")]
+        public string Siciation { get; set; }
     }
 }

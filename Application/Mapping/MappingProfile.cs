@@ -10,6 +10,8 @@ namespace Application.Mapping
         {
             CreateMap<Famous, FamousDto>();
             CreateMap<FamousDto, Famous>();
+            CreateMap<Serie, SerieDto>();
+            CreateMap<SerieDto, Serie>();
         }
     }
 }
