@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DidTheyPlayTogetherDbContext))]
-    [Migration("20220403004507_Add Bas Model")]
-    partial class AddBasModel
+    [Migration("20220403205127_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,13 +56,17 @@ namespace Infrastructure.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime>("DateBirh")
-                        .HasColumnType("datetime");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Education")
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime>("InsertionDate")
-                        .HasColumnType("datetime");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
@@ -74,7 +78,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Weight")
                         .HasColumnType("varchar(200)");
@@ -193,14 +199,14 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Channel")
                         .HasColumnType("varchar(200)");
 
-                    b.Property<DateTime>("FirstEpisodeAirDate")
-                        .HasColumnType("datetime");
+                    b.Property<int>("FirstEpisodeAirDate")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("InsertionDate")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("LastEpisodeAirDate")
-                        .HasColumnType("datetime");
+                    b.Property<int>("LastEpisodeAirDate")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
@@ -212,6 +218,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Producer")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Siciation")
                         .HasColumnType("varchar(200)");
 
                     b.Property<byte>("Status")

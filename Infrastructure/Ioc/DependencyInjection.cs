@@ -45,7 +45,7 @@ namespace Infrastructure.Ioc
 
         private static string GetDbConnectionText()
         {
-            string connectionString = "Data Source=DESKTOP-OUS3O83;Initial Catalog=DİDTHEYPLAYTOGETHER;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = "Data Source=DESKTOP-OUS3O83;Initial Catalog=DIDTHEYPLAYTOGETHER;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             //connectionString = string.Format(connectionString, Environment.GetEnvironmentVariable("FuntasyDbUser"), Environment.GetEnvironmentVariable("FuntasyDbPassword"));
             //Sunucu restartında ne olacağına emin olunmadığı için comment alındı
             return connectionString;

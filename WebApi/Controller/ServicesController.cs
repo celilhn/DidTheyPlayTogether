@@ -102,13 +102,25 @@ namespace WebApi.Controller
                     HtmlNode tbody = table.SelectNodes("tbody").First();
                     HtmlNode[] tr = tbody.SelectNodes("tr").ToArray();
                     int counter = 0;
-                    int year = 0;
+                    int firstEpisodeAirDate = 0;
+                    int lastEpisodeAirDate = 0;
                     foreach (HtmlNode node in tr)
                     {
                         if(counter == 0)
                         {
                             HtmlNode th = node.SelectNodes("th").First();
-                            year = (int)Convert.ToUInt32(th.InnerText.ToString());
+                            string yearInfo = th.InnerText.ToString();
+                            if(yearInfo.Count() < 7)
+                            {
+                                firstEpisodeAirDate = (int)Convert.ToUInt32(yearInfo);
+                                lastEpisodeAirDate = (int)Convert.ToUInt32(yearInfo);
+                            }
+                            else
+                            {
+                                string[] years = yearInfo.Split("-");
+                                firstEpisodeAirDate = (int)Convert.ToUInt32(years[0]);
+                                lastEpisodeAirDate = (int)Convert.ToUInt32(years[1]);
+                            }
                         }
                         else if (counter > 1)
                         {
@@ -119,9 +131,18 @@ namespace WebApi.Controller
                                 serie = new SerieDto();
                                 serie.Name = td[0].InnerText.ToString();
                                 serie.Channel = td[4].InnerText.ToString();
-                                serie.NumberofSeasons = (int)Convert.ToUInt32((td[2].InnerText).ToString());
-                                serie.NumberofEpisodes = (int)Convert.ToUInt32((td[1].InnerText).ToString());
-                                serie.FirstEpisodeAirDate = year;
+                                string NumberofSeasons = (td[2].InnerText.ToString()).Replace("\n", string.Empty);
+                                string NumberofEpisodes = (td[1].InnerText.ToString()).Replace("\n", string.Empty);
+                                if (NumberofSeasons != "-" && NumberofSeasons != "" && NumberofSeasons.Count() < 3)
+                                {
+                                    serie.NumberofSeasons = (int)Convert.ToUInt32(NumberofSeasons);
+                                }
+                                if(NumberofEpisodes != "-" && NumberofEpisodes != "" && NumberofEpisodes.Count() < 4)
+                                {
+                                    serie.NumberofEpisodes = (int)Convert.ToUInt32(NumberofEpisodes);
+                                }
+                                serie.FirstEpisodeAirDate = firstEpisodeAirDate;
+                                serie.LastEpisodeAirDate = lastEpisodeAirDate;
                                 serie.Siciation = td[3].InnerText.ToString();
                                 serieService.SaveSerie(serie);
                                 counterofAdded++;
@@ -132,8 +153,9 @@ namespace WebApi.Controller
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
             return Ok();
         }

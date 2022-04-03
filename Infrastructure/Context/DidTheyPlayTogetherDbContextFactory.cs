@@ -23,7 +23,7 @@ namespace Infrastructure.Context
                 .AddEnvironmentVariables()
                 .Build();
 
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-OUS3O83;Initial Catalog=DİDTHEYPLAYTOGETHER;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-OUS3O83;Initial Catalog=DIDTHEYPLAYTOGETHER;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             return new DidTheyPlayTogetherDbContext(optionsBuilder.Options);
         }
     }

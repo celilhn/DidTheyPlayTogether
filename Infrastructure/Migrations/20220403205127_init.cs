@@ -13,6 +13,9 @@ namespace Infrastructure.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InsertionDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false),
                     Description = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
                 constraints: table =>
@@ -26,11 +29,14 @@ namespace Infrastructure.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InsertionDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
+                    UpdateDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false),
                     Name = table.Column<string>(type: "varchar(200)", nullable: true),
                     Age = table.Column<string>(type: "varchar(200)", nullable: true),
                     Size = table.Column<string>(type: "varchar(200)", nullable: true),
                     Weight = table.Column<string>(type: "varchar(200)", nullable: true),
-                    DateBirh = table.Column<DateTime>(type: "datetime", nullable: false),
+                    DateBirh = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
                     Education = table.Column<string>(type: "varchar(200)", nullable: true)
                 },
                 constraints: table =>
@@ -44,6 +50,9 @@ namespace Infrastructure.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InsertionDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false),
                     Name = table.Column<string>(type: "varchar(200)", nullable: true),
                     Subject = table.Column<string>(type: "varchar(200)", nullable: true),
                     Producer = table.Column<string>(type: "varchar(200)", nullable: true)
@@ -59,6 +68,9 @@ namespace Infrastructure.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InsertionDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false),
                     FilmID = table.Column<int>(type: "int", nullable: false),
                     FamousID = table.Column<int>(type: "int", nullable: false),
                     Character = table.Column<string>(type: "varchar(200)", nullable: true),
@@ -76,6 +88,9 @@ namespace Infrastructure.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InsertionDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false),
                     FilmID = table.Column<int>(type: "int", nullable: false),
                     FamousID = table.Column<int>(type: "int", nullable: false),
                     Character = table.Column<string>(type: "varchar(200)", nullable: true),
@@ -92,13 +107,17 @@ namespace Infrastructure.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InsertionDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false),
                     Name = table.Column<string>(type: "varchar(200)", nullable: true),
-                    FirstEpisodeAirDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    LastEpisodeAirDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    FirstEpisodeAirDate = table.Column<int>(type: "int", nullable: false),
+                    LastEpisodeAirDate = table.Column<int>(type: "int", nullable: false),
                     NumberofSeasons = table.Column<int>(type: "int", nullable: false),
                     NumberofEpisodes = table.Column<int>(type: "int", nullable: false),
                     Channel = table.Column<string>(type: "varchar(200)", nullable: true),
-                    Producer = table.Column<string>(type: "varchar(200)", nullable: true)
+                    Producer = table.Column<string>(type: "varchar(200)", nullable: true),
+                    Siciation = table.Column<string>(type: "varchar(200)", nullable: true)
                 },
                 constraints: table =>
                 {
