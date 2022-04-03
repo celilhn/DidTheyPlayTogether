@@ -32,6 +32,11 @@ namespace Application.Services
             return mapper.Map<FamousDto>(famousRepository.GetFamous(name));
         }
 
+        public List<FamousDto> GetFamouses()
+        {
+            return mapper.Map<List<FamousDto>>(famousRepository.GetFamouses());
+        }
+
         public FamousDto SaveFamous(FamousDto famous)
         {
             if (famous.ID > 0)

@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using System.Collections.Generic;
 
 namespace Domain.Interfaces
 {
@@ -8,5 +9,6 @@ namespace Domain.Interfaces
         Famous AddFamous(Famous famous);
         Famous GetFamous(int id);
         Famous GetFamous(string name);
+        List<Famous> GetFamouses();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Application.ViewModels;
+using System.Collections.Generic;
 
 namespace Application.Interfaces
 {
@@ -7,5 +8,6 @@ namespace Application.Interfaces
         FamousDto SaveFamous(FamousDto famous);
         FamousDto GetFamous(int id);
         FamousDto GetFamous(string name);
+        List<FamousDto> GetFamouses();
     }
 }

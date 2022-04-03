@@ -37,6 +37,11 @@ namespace Infrastructure.Repositories
             return context.Famouses.Where(x => x.Name == name).SingleOrDefault();
         }
 
+        public List<Famous> GetFamouses()
+        {
+            return context.Famouses.ToList();
+        }
+
         public Famous UpdateFamous(Famous famous)
         {
             context.Entry(famous).State = EntityState.Modified;
