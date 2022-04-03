@@ -19,6 +19,9 @@ namespace Infrastructure.Repositories
         }
         public Famous AddFamous(Famous famous)
         {
+            famous.DateBirh = DateTime.Now;
+            famous.InsertionDate = DateTime.Now;
+            famous.UpdateDate = DateTime.Now;
             context.Famouses.Add(famous);
             context.SaveChanges();
             return famous;

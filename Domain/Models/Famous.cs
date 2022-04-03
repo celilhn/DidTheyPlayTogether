@@ -1,6 +1,7 @@
 ﻿using Domain.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Domain.Models
         public string Size { get; set; }
         [Column(TypeName = "varchar(200)")]
         public string Weight { get; set; }
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "datetime"), DefaultValue("getdate()")]
         public DateTime DateBirh { get; set; }
         [Column(TypeName = "varchar(200)")]
         public string Education { get; set; }

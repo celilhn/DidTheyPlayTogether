@@ -21,6 +21,9 @@ namespace Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Famous>().Property(b => b.InsertionDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Famous>().Property(b => b.UpdateDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Famous>().Property(b => b.DateBirh).HasDefaultValueSql("getdate()");
         }
     }
 }
