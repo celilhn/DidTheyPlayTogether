@@ -1,4 +1,6 @@
-﻿using HtmlAgilityPack;
+﻿using Application.Interfaces;
+using Application.ViewModels;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,28 +11,44 @@ namespace Services
 {
     public class AddFamouses
     {
-        static public void GetHtml()
+        private readonly IFamousService famousService;
+
+        public AddFamouses(IFamousService famousService)
         {
-            int counterofAdded = 0;
-            HtmlWeb web = new HtmlWeb();
-            HtmlDocument document = web.Load("https://tr.wikipedia.org/wiki/T%C3%BCrk_oyuncular_listesi");
-            for (int i = 0; i < 28; i++)
+            this.famousService = famousService;
+        }
+        
+        public void GetHtml()
+        {
+            FamousDto famous = null;
+            try
             {
-                Boolean isExist = true;
-                string xPath = "//*[@id='mw-content-text']/div[1]/ul[" + (i + 1) + "]";
-                HtmlNode ul = document.DocumentNode.SelectNodes(xPath).First();
-                HtmlNode[] li = ul.SelectNodes("li").ToArray();
-                foreach (HtmlNode liNode in li)
+                int counterofAdded = 0;
+                HtmlWeb web = new HtmlWeb();
+                HtmlDocument document = web.Load("https://tr.wikipedia.org/wiki/T%C3%BCrk_oyuncular_listesi");
+                for (int i = 0; i < 28; i++)
                 {
-                    //isExist = ControlisFamousExist((liNode.InnerText).ToString());
-                    if (!isExist)
+                    string xPath = "//*[@id='mw-content-text']/div[1]/ul[" + (i + 1) + "]";
+                    HtmlNode ul = document.DocumentNode.SelectNodes(xPath).First();
+                    HtmlNode[] li = ul.SelectNodes("li").ToArray();
+                    foreach (HtmlNode liNode in li)
                     {
-                        //AddFamous((liNode.InnerText).ToString());
-                        counterofAdded++;
+                        famous = famousService.GetFamous((liNode.InnerText).ToString());
+                        if (famous == null)
+                        {
+                            famous.Name = liNode.InnerText.ToString();
+                            famous = famousService.SaveFamous(famous);
+                            counterofAdded++;
+                        }
                     }
                 }
+                Console.WriteLine(counterofAdded + " Adet kişi Eklendi.");
             }
-            Console.WriteLine(counterofAdded + " Adet kişi Eklendi.");
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -3,9 +3,13 @@
 //using Application.Mapping;
 //using Application.Services;
 //using Application.Utilities;
+using Application.Interfaces;
 using Application.Mapping;
+using Application.Services;
 using AutoMapper;
+using Domain.Interfaces;
 using Infrastructure.Context;
+using Infrastructure.Repositories;
 //using Domain.Interfaces;
 //using Infrastructure.Context;
 //using Infrastructure.Notifications;
@@ -22,8 +26,8 @@ namespace Infrastructure.Ioc
     {
         public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddScoped<IUserService, UserService>();
-            //services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFamousService, FamousService>();
+            services.AddScoped<IFamousRepository, FamousRepository>();
             services.AddDbContext<DidTheyPlayTogetherDbContext>(options => options.UseSqlServer(
                    GetDbConnectionText(),
                    b => b.MigrationsAssembly(typeof(DidTheyPlayTogetherDbContext).Assembly.FullName)));

@@ -1,4 +1,4 @@
-﻿//using Application.ViewModels;
+﻿using Application.ViewModels;
 using AutoMapper;
 using Domain.Models;
 
@@ -8,8 +8,8 @@ namespace Application.Mapping
     {
         public MappingProfile()
         {
-            //CreateMap<User, UserDto>();
-            //CreateMap<UserDto, User>();
+            CreateMap<Famous, FamousDto>();
+            CreateMap<FamousDto, Famous>();
         }
     }
 }

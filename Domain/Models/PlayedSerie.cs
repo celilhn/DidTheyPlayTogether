@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,11 +10,8 @@ using System.Threading.Tasks;
 namespace Domain.Models
 {
     [Table("PlayedSeries")]
-    public class PlayedSerie
+    public class PlayedSerie : ExtendedBaseModel
     {
-        [DatabaseGenerated(databaseGeneratedOption: DatabaseGeneratedOption.Identity)]
-        [Key]
-        public int ID { get; set; }
         [Column(TypeName = "int")]
         public int FilmID { get; set; }
         [Column(TypeName = "int")]

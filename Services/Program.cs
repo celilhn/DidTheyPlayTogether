@@ -6,7 +6,8 @@ namespace Services
     {
         static void Main(string[] args)
         {
-            AddFamouses addFamouses = new AddFamouses();
+            AddFamouses addFamouses = null;
+            addFamouses.GetHtml();
         }
     }
 }
