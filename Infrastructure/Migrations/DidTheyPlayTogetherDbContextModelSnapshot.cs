@@ -95,20 +95,41 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Country")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Director")
+                        .HasColumnType("varchar(75)");
+
+                    b.Property<int>("FilmCategoryID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("InsertionDate")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("Producer")
+                    b.Property<string>("Note")
                         .HasColumnType("varchar(200)");
+
+                    b.Property<string>("OriginalName")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("PosterPath")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Producer")
+                        .HasColumnType("varchar(400)");
+
+                    b.Property<int>("ReleaseDate")
+                        .HasColumnType("int");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Subject")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("varchar(1500)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime");

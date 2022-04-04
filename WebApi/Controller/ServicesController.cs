@@ -36,9 +36,9 @@ namespace WebApi.Controller
         public IActionResult AddFamousNamesFromWikipedia()
         {
             FamousDto famous = null;
+            int counterofAdded = 0;
             try
             {
-                int counterofAdded = 0;
                 document = web.Load("https://tr.wikipedia.org/wiki/T%C3%BCrk_oyuncular_listesi");
                 for (int i = 0; i < 28; i++)
                 {
@@ -65,7 +65,7 @@ namespace WebApi.Controller
                 HttpContext.Response.HttpContext.Items.Add("Message", "Kayıt Başarısız.");
                 throw;
             }
-            return Ok();
+            return Ok(counterofAdded + " Adet kişi Eklendi.");
         }
 
         [HttpGet]
@@ -92,9 +92,9 @@ namespace WebApi.Controller
         public IActionResult AddSeriesFromWikipedia()
         {
             SerieDto serie = null;
+            int counterofAdded = 0;
             try
             {
-                int counterofAdded = 0;
                 document = web.Load("https://tr.wikipedia.org/wiki/T%C3%BCrk_dizileri_listesi");
                 for (int i = 3; i < 22; i++)
                 {
@@ -158,7 +158,7 @@ namespace WebApi.Controller
             {
                 Console.WriteLine(ex.Message);
             }
-            return Ok();
+            return Ok(counterofAdded + " Adet Eklendi.");
         }
 
         [HttpGet]
@@ -166,9 +166,10 @@ namespace WebApi.Controller
         {
             List<Movies> movies = null;
             FilmDto film = null;
+            int counterofAdded = 0;
             try
             {
-                for (int i = 0; i < 500; i++)
+                for (int i = 1; i < 500; i++)
                 {
                     movies = movieDbService.GetPopulars(i.ToString());
                     foreach (Movies movie in movies)
@@ -185,9 +186,16 @@ namespace WebApi.Controller
                             film.Name = movie.title;
                             film.OriginalName = movie.original_title;
                             film.PosterPath = movie.poster_path;
-                            film.ReleaseDate = Convert.ToInt32(movie.release_date.Substring(0, 4));
+                            if(movie.release_date != null)
+                            {
+                                if(movie.release_date.Count() > 3)
+                                {
+                                    film.ReleaseDate = Convert.ToInt32(movie.release_date.Substring(0, 4));
+                                }
+                            }
                             film.Subject = movie.overview;
                             film = filmService.SaveFilm(film);
+                            counterofAdded++;
                         }
                     }
                 }
@@ -196,7 +204,7 @@ namespace WebApi.Controller
             {
                 Console.WriteLine(ex.Message);
             }
-            return Ok();
+            return Ok(counterofAdded + " Adet Eklendi.");
         }
 
     }

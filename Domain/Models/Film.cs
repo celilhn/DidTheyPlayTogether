@@ -16,9 +16,9 @@ namespace Domain.Models
         public string Name { get; set; }
         [Column(TypeName = "varchar(200)")]
         public string OriginalName { get; set; }
-        [Column(TypeName = "varchar(200)")]
+        [Column(TypeName = "varchar(1500)")]
         public string Subject { get; set; }
-        [Column(TypeName = "varchar(75)")]
+        [Column(TypeName = "varchar(400)")]
         public string Producer { get; set; }
         [Column(TypeName = "varchar(75)")]
         public string Director { get; set; }

@@ -26,7 +26,7 @@ namespace Infrastructure.Notifications
             {
                 if (page != "")
                 {
-                    url = url + "&page=458";
+                    url = url + "&page=" + page + "";
                 }
                 var webRequest = WebRequest.Create(url) as HttpWebRequest;
                 if (webRequest != null)

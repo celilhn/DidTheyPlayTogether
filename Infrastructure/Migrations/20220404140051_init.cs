@@ -54,8 +54,15 @@ namespace Infrastructure.Migrations
                     UpdateDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     Status = table.Column<byte>(type: "tinyint", nullable: false),
                     Name = table.Column<string>(type: "varchar(200)", nullable: true),
-                    Subject = table.Column<string>(type: "varchar(200)", nullable: true),
-                    Producer = table.Column<string>(type: "varchar(200)", nullable: true)
+                    OriginalName = table.Column<string>(type: "varchar(200)", nullable: true),
+                    Subject = table.Column<string>(type: "varchar(1500)", nullable: true),
+                    Producer = table.Column<string>(type: "varchar(400)", nullable: true),
+                    Director = table.Column<string>(type: "varchar(75)", nullable: true),
+                    Note = table.Column<string>(type: "varchar(200)", nullable: true),
+                    FilmCategoryID = table.Column<int>(type: "int", nullable: false),
+                    Country = table.Column<string>(type: "varchar(100)", nullable: true),
+                    PosterPath = table.Column<string>(type: "varchar(100)", nullable: true),
+                    ReleaseDate = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
