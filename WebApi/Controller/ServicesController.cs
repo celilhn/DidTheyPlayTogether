@@ -1,10 +1,14 @@
 ﻿using Application.Interfaces;
+using Application.Models;
 using Application.ViewModels;
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 
 namespace WebApi.Controller
 {
@@ -15,23 +19,26 @@ namespace WebApi.Controller
     {
         private readonly IFamousService famousService;
         private readonly ISerieService serieService;
-
-        public ServicesController(IFamousService famousService, ISerieService serieService)
+        private readonly IFilmService filmService;
+        private readonly IMovieDbService movieDbService;
+        private HtmlWeb web;
+        private HtmlDocument document;
+        public ServicesController(IFamousService famousService, ISerieService serieService, IFilmService filmService, IMovieDbService movieDbService)
         {
             this.famousService = famousService;
             this.serieService = serieService;
+            this.filmService = filmService;
+            this.movieDbService = movieDbService;
+            this.web = new HtmlWeb();
         }
 
         [HttpGet]
         public IActionResult AddFamousNamesFromWikipedia()
         {
             FamousDto famous = null;
-            HtmlWeb web = null;
-            HtmlDocument document = null;
             try
             {
                 int counterofAdded = 0;
-                web = new HtmlWeb();
                 document = web.Load("https://tr.wikipedia.org/wiki/T%C3%BCrk_oyuncular_listesi");
                 for (int i = 0; i < 28; i++)
                 {
@@ -65,15 +72,12 @@ namespace WebApi.Controller
         public IActionResult AddFamousInfoFromWikipedia()
         {
             List<FamousDto> famouses = null;
-            HtmlWeb web = null;
-            HtmlDocument document = null;
             try
             {
                 famouses = famousService.GetFamouses();
                 foreach (FamousDto famous in famouses)
                 {
                     int counterofAdded = 0;
-                    web = new HtmlWeb();
                     document = web.Load("https://tr.wikipedia.org/wiki/K%C4%B1van%C3%A7_Tatl%C4%B1tu%C4%9F");
                 }
                 
@@ -88,12 +92,9 @@ namespace WebApi.Controller
         public IActionResult AddSeriesFromWikipedia()
         {
             SerieDto serie = null;
-            HtmlWeb web = null;
-            HtmlDocument document = null;
             try
             {
                 int counterofAdded = 0;
-                web = new HtmlWeb();
                 document = web.Load("https://tr.wikipedia.org/wiki/T%C3%BCrk_dizileri_listesi");
                 for (int i = 3; i < 22; i++)
                 {
@@ -159,5 +160,45 @@ namespace WebApi.Controller
             }
             return Ok();
         }
+
+        [HttpGet]
+        public IActionResult AddPopularFilmsFromMovieDb()
+        {
+            List<Movies> movies = null;
+            FilmDto film = null;
+            try
+            {
+                for (int i = 0; i < 500; i++)
+                {
+                    movies = movieDbService.GetPopulars(i.ToString());
+                    foreach (Movies movie in movies)
+                    {
+                        film = filmService.GetFilm(movie.title);
+                        if(film == null)
+                        {
+                            film = filmService.GetFilm(movie.original_title);
+                        }
+                        if(film == null)
+                        {
+                            film = new FilmDto();
+                            film.Country = "Other";
+                            film.Name = movie.title;
+                            film.OriginalName = movie.original_title;
+                            film.PosterPath = movie.poster_path;
+                            film.ReleaseDate = Convert.ToInt32(movie.release_date.Substring(0, 4));
+                            film.Subject = movie.overview;
+                            film = filmService.SaveFilm(film);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return Ok();
+        }
+
     }
+
 }
