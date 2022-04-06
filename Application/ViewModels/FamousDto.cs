@@ -15,5 +15,8 @@ namespace Application.ViewModels
         public string Weight { get; set; }
         public DateTime DateBirh { get; set; }
         public string Education { get; set; }
+        public short Gender { get; set; }
+        public string ProfilePath { get; set; }
+        public double Popularity { get; set; }
     }
 }

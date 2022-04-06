@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\sharedsettings.json" Link="sharedsettings.json" />
+    <Content Include="..\ConfigFiles\sharedsettings.json" Link="sharedsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
