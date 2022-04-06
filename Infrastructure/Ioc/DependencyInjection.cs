@@ -30,6 +30,7 @@ namespace Infrastructure.Ioc
             services.AddScoped<ISerieRepository, SerieRepository>();
             services.AddScoped<IFilmService, FilmService>();
             services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IPlayedFilmRepository, PlayedFilmRepository>();
             services.AddScoped<IMovieDbMovieService, MovieDbMovieService>();
             services.AddScoped<IMovieDbPeopleService, MovieDbPeopleService>();
             services.AddScoped<IMovieDbTvService, MovieDbTvService>();
