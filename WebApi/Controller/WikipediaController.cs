@@ -1,34 +1,25 @@
 ﻿using Application.Interfaces;
-using Application.Models;
 using Application.ViewModels;
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 
 namespace WebApi.Controller
 {
-
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ServicesController : ControllerBase
+    public class WikipediaController : ControllerBase
     {
         private readonly IFamousService famousService;
         private readonly ISerieService serieService;
-        private readonly IFilmService filmService;
-        private readonly IMovieDbService movieDbService;
         private HtmlWeb web;
         private HtmlDocument document;
-        public ServicesController(IFamousService famousService, ISerieService serieService, IFilmService filmService, IMovieDbService movieDbService)
+        public WikipediaController(IFamousService famousService, ISerieService serieService)
         {
             this.famousService = famousService;
             this.serieService = serieService;
-            this.filmService = filmService;
-            this.movieDbService = movieDbService;
             this.web = new HtmlWeb();
         }
 
@@ -77,10 +68,10 @@ namespace WebApi.Controller
                 famouses = famousService.GetFamouses();
                 foreach (FamousDto famous in famouses)
                 {
-                    int counterofAdded = 0;
+                    //int counterofAdded = 0;
                     document = web.Load("https://tr.wikipedia.org/wiki/K%C4%B1van%C3%A7_Tatl%C4%B1tu%C4%9F");
                 }
-                
+
             }
             catch (Exception)
             {
@@ -107,11 +98,11 @@ namespace WebApi.Controller
                     int lastEpisodeAirDate = 0;
                     foreach (HtmlNode node in tr)
                     {
-                        if(counter == 0)
+                        if (counter == 0)
                         {
                             HtmlNode th = node.SelectNodes("th").First();
                             string yearInfo = th.InnerText.ToString();
-                            if(yearInfo.Count() < 7)
+                            if (yearInfo.Count() < 7)
                             {
                                 firstEpisodeAirDate = (int)Convert.ToUInt32(yearInfo);
                                 lastEpisodeAirDate = (int)Convert.ToUInt32(yearInfo);
@@ -127,7 +118,7 @@ namespace WebApi.Controller
                         {
                             HtmlNode[] td = node.SelectNodes("td").ToArray();
                             serie = serieService.GetSerie(td[0].InnerText.ToString());
-                            if(serie == null)
+                            if (serie == null)
                             {
                                 serie = new SerieDto();
                                 serie.Name = td[0].InnerText.ToString();
@@ -138,7 +129,7 @@ namespace WebApi.Controller
                                 {
                                     serie.NumberofSeasons = (int)Convert.ToUInt32(NumberofSeasons);
                                 }
-                                if(NumberofEpisodes != "-" && NumberofEpisodes != "" && NumberofEpisodes.Count() < 4)
+                                if (NumberofEpisodes != "-" && NumberofEpisodes != "" && NumberofEpisodes.Count() < 4)
                                 {
                                     serie.NumberofEpisodes = (int)Convert.ToUInt32(NumberofEpisodes);
                                 }
@@ -160,53 +151,5 @@ namespace WebApi.Controller
             }
             return Ok(counterofAdded + " Adet Eklendi.");
         }
-
-        [HttpGet]
-        public IActionResult AddPopularFilmsFromMovieDb()
-        {
-            List<Movies> movies = null;
-            FilmDto film = null;
-            int counterofAdded = 0;
-            try
-            {
-                for (int i = 1; i < 500; i++)
-                {
-                    movies = movieDbService.GetPopulars(i.ToString());
-                    foreach (Movies movie in movies)
-                    {
-                        film = filmService.GetFilm(movie.title);
-                        if(film == null)
-                        {
-                            film = filmService.GetFilm(movie.original_title);
-                        }
-                        if(film == null)
-                        {
-                            film = new FilmDto();
-                            film.Country = "Other";
-                            film.Name = movie.title;
-                            film.OriginalName = movie.original_title;
-                            film.PosterPath = movie.poster_path;
-                            if(movie.release_date != null)
-                            {
-                                if(movie.release_date.Count() > 3)
-                                {
-                                    film.ReleaseDate = Convert.ToInt32(movie.release_date.Substring(0, 4));
-                                }
-                            }
-                            film.Subject = movie.overview;
-                            film = filmService.SaveFilm(film);
-                            counterofAdded++;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return Ok(counterofAdded + " Adet Eklendi.");
-        }
-
     }
-
 }

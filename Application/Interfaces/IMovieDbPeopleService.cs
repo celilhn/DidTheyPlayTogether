@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Application.Interfaces
 {
-    public interface IMovieDbService
+    public interface IMovieDbPeopleService
     {
-        List<Movies> GetPopulars(string page = "");
+        List<People> GetPopularPeople(string page = "");
     }
 }
