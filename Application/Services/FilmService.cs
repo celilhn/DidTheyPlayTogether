@@ -28,6 +28,10 @@ namespace Application.Services
             return mapper.Map<FilmDto>(filmRepository.GetFilm(name));
         }
 
+        public FilmDto GetFilmByOriginalName(string originalName)
+        {
+            return mapper.Map<FilmDto>(filmRepository.GetFilmByOriginalName(originalName));
+        }
         public FilmDto SaveFilm(FilmDto film)
         {
             if (film.ID > 0)

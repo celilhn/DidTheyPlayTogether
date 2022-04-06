@@ -47,7 +47,7 @@ namespace Infrastructure.Repositories
         {
             context.Entry(playedFilm).State = EntityState.Modified;
             context.SaveChanges();
-            return film;
+            return playedFilm;
         }
     }
 }

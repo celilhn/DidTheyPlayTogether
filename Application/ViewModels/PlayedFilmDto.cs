@@ -13,6 +13,5 @@ namespace Application.ViewModels
         public int FamousID { get; set; }
         public string Character { get; set; }
         public int ContributionID { get; set; }
-        public string Year { get; set; }
     }
 }

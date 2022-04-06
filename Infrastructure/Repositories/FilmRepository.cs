@@ -35,6 +35,11 @@ namespace Infrastructure.Repositories
             return context.Films.Where(x => x.Name == name).SingleOrDefault();
         }
 
+        public Film GetFilmByOriginalName(string originalName)
+        {
+            return context.Films.Where(x => x.OriginalName == originalName).SingleOrDefault();
+        }
+
         public Film UpdateFilm(Film film)
         {
             context.Entry(film).State = EntityState.Modified;

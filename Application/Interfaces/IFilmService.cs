@@ -6,6 +6,7 @@ namespace Application.Interfaces
     {
         FilmDto GetFilm(int id);
         FilmDto GetFilm(string name);
+        FilmDto GetFilmByOriginalName(string originalName);
         FilmDto SaveFilm(FilmDto film);
     }
 }

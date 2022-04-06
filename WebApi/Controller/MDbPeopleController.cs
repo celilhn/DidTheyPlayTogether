@@ -13,10 +13,14 @@ namespace WebApi.Controller
     public class MDbPeopleController : ControllerBase
     {
         private readonly IFamousService famousService;
+        private readonly IFilmService filmService;
+        private readonly IPlayedFilmService playedFilmService;
         private readonly IMovieDbPeopleService peopleService;
-        public MDbPeopleController(IFamousService famousService, IMovieDbPeopleService peopleService)
+        public MDbPeopleController(IFamousService famousService, IFilmService filmService, IPlayedFilmService playedFilmService, IMovieDbPeopleService peopleService)
         {
             this.famousService = famousService;
+            this.filmService = filmService;
+            this.playedFilmService = playedFilmService;
             this.peopleService = peopleService;
         }
 
@@ -25,6 +29,8 @@ namespace WebApi.Controller
         {
             List<People> people = null;
             FamousDto famous = null;
+            FilmDto film = null;
+            PlayedFilmDto playedFilm = null;
             int counterofAdded = 0;
             try
             {
@@ -41,9 +47,25 @@ namespace WebApi.Controller
                             famous.Name = human.name;
                             famous.Popularity = human.popularity;
                             famous.ProfilePath = human.profile_path;
+                            famous = famousService.SaveFamous(famous);
                             foreach (KnownFor knowFor in human.known_for)
                             {
-                                // played filme ekleme yapacak
+                                film = filmService.GetFilmByOriginalName(knowFor.original_title);
+                                if(film == null)
+                                {
+                                    film = new FilmDto();
+                                    film.Name = knowFor.name;
+                                    film.OriginalName = knowFor.original_title;
+                                    film.PosterPath = knowFor.poster_path;
+                                    film.ReleaseDate = Convert.ToInt32(knowFor.release_date.Substring(0, 4));
+                                    film.Country = "Other";
+                                    film.Subject = knowFor.overview;
+                                    film = filmService.SaveFilm(film);
+                                }
+                                playedFilm = new PlayedFilmDto();
+                                playedFilm.FamousID = famous.ID;
+                                playedFilm.FilmID = film.ID;
+                                playedFilm = playedFilmService.SavePlayedFilm(playedFilm);
                                 counterofAdded++;
                             }
                         }
@@ -54,7 +76,7 @@ namespace WebApi.Controller
             {
                 Console.WriteLine(ex.Message);
             }
-            return Ok();
+            return Ok(counterofAdded + " Adet Eklendi.");
         }
     }
 }

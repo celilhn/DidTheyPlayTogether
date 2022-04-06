@@ -6,6 +6,7 @@ namespace Domain.Interfaces
     {
         Film GetFilm(int id);
         Film GetFilm(string name);
+        Film GetFilmByOriginalName(string originalName);
         Film AddFilm(Film film);
         Film UpdateFilm(Film film);
     }
