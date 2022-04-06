@@ -12,6 +12,10 @@ namespace Application.Mapping
             CreateMap<FamousDto, Famous>();
             CreateMap<Serie, SerieDto>();
             CreateMap<SerieDto, Serie>();
+            CreateMap<Film, FilmDto>();
+            CreateMap<FilmDto, Film>();
+            CreateMap<PlayedFilm, PlayedFilmDto>();
+            CreateMap<PlayedFilmDto, PlayedFilm>();
         }
     }
 }

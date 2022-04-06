@@ -1,11 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
-using Application.Models;
-using Application.Logging;
-using System.Net.Mail;
-using System.Net;
-using System;
 
 namespace Application.Utilities
 {

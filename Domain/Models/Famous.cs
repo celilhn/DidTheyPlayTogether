@@ -25,5 +25,11 @@ namespace Domain.Models
         public DateTime DateBirh { get; set; }
         [Column(TypeName = "varchar(200)")]
         public string Education { get; set; }
+        [Column(TypeName = "tinyint")]
+        public short Gender { get; set; }
+        [Column(TypeName = "varchar(200)")]
+        public string ProfilePath { get; set; }
+        [Column(TypeName = "int")]
+        public double Popularity { get; set; }
     }
 }

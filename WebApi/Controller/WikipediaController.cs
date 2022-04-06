@@ -8,30 +8,28 @@ using System.Linq;
 
 namespace WebApi.Controller
 {
-
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ServicesController : ControllerBase
+    public class WikipediaController : ControllerBase
     {
         private readonly IFamousService famousService;
         private readonly ISerieService serieService;
-
-        public ServicesController(IFamousService famousService, ISerieService serieService)
+        private HtmlWeb web;
+        private HtmlDocument document;
+        public WikipediaController(IFamousService famousService, ISerieService serieService)
         {
             this.famousService = famousService;
             this.serieService = serieService;
+            this.web = new HtmlWeb();
         }
 
         [HttpGet]
         public IActionResult AddFamousNamesFromWikipedia()
         {
             FamousDto famous = null;
-            HtmlWeb web = null;
-            HtmlDocument document = null;
+            int counterofAdded = 0;
             try
             {
-                int counterofAdded = 0;
-                web = new HtmlWeb();
                 document = web.Load("https://tr.wikipedia.org/wiki/T%C3%BCrk_oyuncular_listesi");
                 for (int i = 0; i < 28; i++)
                 {
@@ -58,25 +56,22 @@ namespace WebApi.Controller
                 HttpContext.Response.HttpContext.Items.Add("Message", "Kayıt Başarısız.");
                 throw;
             }
-            return Ok();
+            return Ok(counterofAdded + " Adet kişi Eklendi.");
         }
 
         [HttpGet]
         public IActionResult AddFamousInfoFromWikipedia()
         {
             List<FamousDto> famouses = null;
-            HtmlWeb web = null;
-            HtmlDocument document = null;
             try
             {
                 famouses = famousService.GetFamouses();
                 foreach (FamousDto famous in famouses)
                 {
-                    int counterofAdded = 0;
-                    web = new HtmlWeb();
+                    //int counterofAdded = 0;
                     document = web.Load("https://tr.wikipedia.org/wiki/K%C4%B1van%C3%A7_Tatl%C4%B1tu%C4%9F");
                 }
-                
+
             }
             catch (Exception)
             {
@@ -88,12 +83,9 @@ namespace WebApi.Controller
         public IActionResult AddSeriesFromWikipedia()
         {
             SerieDto serie = null;
-            HtmlWeb web = null;
-            HtmlDocument document = null;
+            int counterofAdded = 0;
             try
             {
-                int counterofAdded = 0;
-                web = new HtmlWeb();
                 document = web.Load("https://tr.wikipedia.org/wiki/T%C3%BCrk_dizileri_listesi");
                 for (int i = 3; i < 22; i++)
                 {
@@ -106,11 +98,11 @@ namespace WebApi.Controller
                     int lastEpisodeAirDate = 0;
                     foreach (HtmlNode node in tr)
                     {
-                        if(counter == 0)
+                        if (counter == 0)
                         {
                             HtmlNode th = node.SelectNodes("th").First();
                             string yearInfo = th.InnerText.ToString();
-                            if(yearInfo.Count() < 7)
+                            if (yearInfo.Count() < 7)
                             {
                                 firstEpisodeAirDate = (int)Convert.ToUInt32(yearInfo);
                                 lastEpisodeAirDate = (int)Convert.ToUInt32(yearInfo);
@@ -126,7 +118,7 @@ namespace WebApi.Controller
                         {
                             HtmlNode[] td = node.SelectNodes("td").ToArray();
                             serie = serieService.GetSerie(td[0].InnerText.ToString());
-                            if(serie == null)
+                            if (serie == null)
                             {
                                 serie = new SerieDto();
                                 serie.Name = td[0].InnerText.ToString();
@@ -137,7 +129,7 @@ namespace WebApi.Controller
                                 {
                                     serie.NumberofSeasons = (int)Convert.ToUInt32(NumberofSeasons);
                                 }
-                                if(NumberofEpisodes != "-" && NumberofEpisodes != "" && NumberofEpisodes.Count() < 4)
+                                if (NumberofEpisodes != "-" && NumberofEpisodes != "" && NumberofEpisodes.Count() < 4)
                                 {
                                     serie.NumberofEpisodes = (int)Convert.ToUInt32(NumberofEpisodes);
                                 }
@@ -157,7 +149,7 @@ namespace WebApi.Controller
             {
                 Console.WriteLine(ex.Message);
             }
-            return Ok();
+            return Ok(counterofAdded + " Adet Eklendi.");
         }
     }
 }

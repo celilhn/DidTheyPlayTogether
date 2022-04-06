@@ -2,18 +2,16 @@
 //using Application.Logging;
 //using Application.Mapping;
 //using Application.Services;
-//using Application.Utilities;
 using Application.Interfaces;
+using Application.Logging;
 using Application.Mapping;
 using Application.Services;
+using Application.Utilities;
 using AutoMapper;
 using Domain.Interfaces;
 using Infrastructure.Context;
+using Infrastructure.MovieDbServices;
 using Infrastructure.Repositories;
-//using Domain.Interfaces;
-//using Infrastructure.Context;
-//using Infrastructure.Notifications;
-//using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +28,13 @@ namespace Infrastructure.Ioc
             services.AddScoped<IFamousRepository, FamousRepository>();
             services.AddScoped<ISerieService, SerieService>();
             services.AddScoped<ISerieRepository, SerieRepository>();
+            services.AddScoped<IFilmService, FilmService>();
+            services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IPlayedFilmRepository, PlayedFilmRepository>();
+            services.AddScoped<IMovieDbMovieService, MovieDbMovieService>();
+            services.AddScoped<IMovieDbPeopleService, MovieDbPeopleService>();
+            services.AddScoped<IMovieDbTvService, MovieDbTvService>();
+            services.AddScoped<IHttpUtilities, HttpUtilities>();
             services.AddDbContext<DidTheyPlayTogetherDbContext>(options => options.UseSqlServer(
                    GetDbConnectionText(),
                    b => b.MigrationsAssembly(typeof(DidTheyPlayTogetherDbContext).Assembly.FullName)));
