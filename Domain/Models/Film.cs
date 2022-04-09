@@ -32,6 +32,8 @@ namespace Domain.Models
         public string PosterPath { get; set; }
         [Column(TypeName = "int")]
         public int ReleaseDate { get; set; }
+        [Column(TypeName = "int")]
+        public int SourceID { get; set; }
 
     }
 }

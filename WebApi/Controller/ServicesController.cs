@@ -45,6 +45,7 @@ namespace WebApi.Controller
                         {
                             famous = new FamousDto();
                             famous.Name = liNode.InnerText.ToString();
+                            famous.SourceID = 0;
                             famous = famousService.SaveFamous(famous);
                             counterofAdded++;
                         }

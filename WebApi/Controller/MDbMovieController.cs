@@ -54,6 +54,7 @@ namespace WebApi.Controller
                                 }
                             }
                             film.Subject = movie.overview;
+                            film.SourceID = 1;
                             film = filmService.SaveFilm(film);
                             counterofAdded++;
                         }

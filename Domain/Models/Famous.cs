@@ -31,5 +31,7 @@ namespace Domain.Models
         public string ProfilePath { get; set; }
         [Column(TypeName = "int")]
         public double Popularity { get; set; }
+        [Column(TypeName = "int")]
+        public int SourceID { get; set; }
     }
 }

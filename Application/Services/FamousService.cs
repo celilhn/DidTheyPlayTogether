@@ -48,6 +48,7 @@ namespace Application.Services
                 famousTemp.Name = famous.Name;
                 famousTemp.Size = famous.Size;
                 famousTemp.Weight = famous.Weight;
+                famousTemp.SourceID = famous.SourceID;
                 famousTemp = famousRepository.UpdateFamous(famousTemp);
                 famous = mapper.Map<FamousDto>(famousTemp);
             }

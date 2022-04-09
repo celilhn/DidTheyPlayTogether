@@ -18,5 +18,6 @@ namespace Application.ViewModels
         public short Gender { get; set; }
         public string ProfilePath { get; set; }
         public double Popularity { get; set; }
+        public int SourceID { get; set; }
     }
 }

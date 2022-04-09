@@ -14,5 +14,6 @@ namespace Application.ViewModels
         public string Country { get; set; }
         public string PosterPath { get; set; }
         public int ReleaseDate { get; set; }
+        public int SourceID { get; set; }
     }
 }

@@ -41,6 +41,7 @@ namespace Application.Services
                 filmTemp.Note = film.Note;
                 filmTemp.Producer = film.Producer;
                 filmTemp.Subject = film.Subject;
+                filmTemp.SourceID = film.SourceID;
                 filmTemp = filmRepository.UpdateFilm(filmTemp);
                 film = mapper.Map<FilmDto>(filmTemp);
             }
