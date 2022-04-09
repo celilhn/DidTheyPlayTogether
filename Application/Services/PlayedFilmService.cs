@@ -27,9 +27,9 @@ namespace Application.Services
             return mapper.Map<PlayedFilmDto>(playedFilmRepository.GetPlayedFilm(id));
         }
 
-        public List<PlayedFilmDto> GetPlayedFilmByFilmID(int famousId)
+        public List<PlayedFilmDto> GetPlayedFilmByFilmID(int filmId)
         {
-            return mapper.Map<List<PlayedFilmDto>>(playedFilmRepository.GetPlayedFilmByFilmID(famousId));
+            return mapper.Map<List<PlayedFilmDto>>(playedFilmRepository.GetPlayedFilmByFilmID(filmId));
         }
 
         public List<PlayedFilmDto> GetPlayedFilmsByFamousID(int famousId)
@@ -46,7 +46,6 @@ namespace Application.Services
                 playedFilmTemp.ContributionID = playedFilm.ContributionID;
                 playedFilmTemp.FamousID = playedFilm.FamousID;
                 playedFilmTemp.FilmID = playedFilm.FilmID;
-                playedFilmTemp.Year = playedFilm.Year;
                 playedFilmTemp = playedFilmRepository.UpdatePlayedFilm(playedFilmTemp);
                 playedFilm = mapper.Map<PlayedFilmDto>(playedFilmTemp);
             }

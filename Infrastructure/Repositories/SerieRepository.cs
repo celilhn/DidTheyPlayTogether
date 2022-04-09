@@ -24,9 +24,9 @@ namespace Infrastructure.Repositories
             return serie;
         }
 
-        public Serie GetSerie(int ID)
+        public Serie GetSerie(int id)
         {
-            return context.Series.Where(x => x.ID == ID).SingleOrDefault();
+            return context.Series.Where(x => x.ID == id).SingleOrDefault();
         }
 
         public Serie GetSerie(string name)
