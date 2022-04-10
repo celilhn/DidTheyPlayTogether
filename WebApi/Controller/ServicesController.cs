@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Domain.Constants.Constants;
 
 namespace WebApi.Controller
 {
@@ -45,7 +46,7 @@ namespace WebApi.Controller
                         {
                             famous = new FamousDto();
                             famous.Name = liNode.InnerText.ToString();
-                            famous.SourceID = 0;
+                            famous.SourceID = (int)SourceTypes.Wikipedia;
                             famous = famousService.SaveFamous(famous);
                             counterofAdded++;
                         }
@@ -145,7 +146,7 @@ namespace WebApi.Controller
                                 serie.FirstEpisodeAirDate = firstEpisodeAirDate;
                                 serie.LastEpisodeAirDate = lastEpisodeAirDate;
                                 serie.Siciation = td[3].InnerText.ToString();
-                                serie.SourceID = 0;
+                                serie.SourceID = (int)SourceTypes.Wikipedia;
                                 serieService.SaveSerie(serie);
                                 counterofAdded++;
                             }

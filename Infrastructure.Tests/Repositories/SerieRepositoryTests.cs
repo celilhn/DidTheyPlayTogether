@@ -57,5 +57,13 @@ namespace Infrastructure.Repositories.Tests
             serie = serieRepository.UpdateSerie(serie);
             Assert.False(serie == null);
         }
+
+        [Theory()]
+        [InlineData("Halo")]
+        public void GetSerieByOriginalName_IsNull_False(string originalName)
+        {
+            Serie serie = serieRepository.GetSerieByOriginalName(originalName);
+            Assert.False(serie == null);
+        }
     }
 }

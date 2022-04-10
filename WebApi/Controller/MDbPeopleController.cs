@@ -1,10 +1,10 @@
 ﻿using Application.Interfaces;
 using Application.Models;
 using Application.ViewModels;
-using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using static Domain.Constants.Constants;
 
 namespace WebApi.Controller
 {
@@ -47,7 +47,7 @@ namespace WebApi.Controller
                             famous.Name = human.name;
                             famous.Popularity = human.popularity;
                             famous.ProfilePath = human.profile_path;
-                            famous.SourceID = 1;
+                            famous.SourceID = (int)SourceTypes.MovieDb;
                             famous = famousService.SaveFamous(famous);
                             foreach (KnownFor knowFor in human.known_for)
                             {
@@ -61,7 +61,7 @@ namespace WebApi.Controller
                                     film.ReleaseDate = Convert.ToInt32(knowFor.release_date.Substring(0, 4));
                                     film.Country = "Other";
                                     film.Subject = knowFor.overview;
-                                    film.SourceID = 1;
+                                    film.SourceID = (int)SourceTypes.MovieDb;
                                     film = filmService.SaveFilm(film);
                                 }
                                 playedFilm = new PlayedFilmDto();

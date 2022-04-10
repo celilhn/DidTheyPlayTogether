@@ -30,5 +30,15 @@ namespace Domain.Models
         public string Siciation { get; set; }
         [Column(TypeName = "int")]
         public int SourceID { get; set; }
+        [Column(TypeName = "varchar(200)")]
+        public string OriginalName { get; set; }
+        [Column(TypeName = "varchar(200)")]
+        public string Country { get; set; }
+        [Column(TypeName = "varchar(200)")]
+        public string Language { get; set; }
+        [Column(TypeName = "varchar(200)")]
+        public string PosterPath { get; set; }
+        [Column(TypeName = "varchar(1200)")]
+        public string Description { get; set; }
     }
 }
