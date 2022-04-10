@@ -16,6 +16,8 @@ namespace Application.Mapping
             CreateMap<FilmDto, Film>();
             CreateMap<PlayedFilm, PlayedFilmDto>();
             CreateMap<PlayedFilmDto, PlayedFilm>();
+            CreateMap<PlayedSerie, PlayedSerieDto>();
+            CreateMap<PlayedSerieDto, PlayedSerie>();
         }
     }
 }
