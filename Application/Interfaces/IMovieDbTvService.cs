@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Application.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
     public interface IMovieDbTvService
     {
+        List<PopularTv> GetPopularTvs(string page = "");
     }
 }

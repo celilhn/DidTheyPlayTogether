@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using System.Reflection;
 
-namespace Application.Tests
+namespace WebApi.Tests
 {
     public class Startup
     {

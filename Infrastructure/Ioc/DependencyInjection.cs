@@ -35,6 +35,7 @@ namespace Infrastructure.Ioc
             services.AddScoped<IMovieDbPeopleService, MovieDbPeopleService>();
             services.AddScoped<IMovieDbTvService, MovieDbTvService>();
             services.AddScoped<IHttpUtilities, HttpUtilities>();
+            services.AddScoped<IPlayedFilmService, PlayedFilmService>();
             services.AddDbContext<DidTheyPlayTogetherDbContext>(options => options.UseSqlServer(
                    GetDbConnectionText(),
                    b => b.MigrationsAssembly(typeof(DidTheyPlayTogetherDbContext).Assembly.FullName)));
@@ -45,7 +46,7 @@ namespace Infrastructure.Ioc
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-            //services.AddScoped<ILoggerManager, LoggerManager>();
+            services.AddScoped<ILoggerManager, LoggerManager>();
         }
 
         private static string GetDbConnectionText()

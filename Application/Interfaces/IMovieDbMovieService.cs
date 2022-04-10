@@ -6,6 +6,6 @@ namespace Application.Interfaces
     public interface IMovieDbMovieService
     {
         List<Movies> GetPopularMovies(string page = "");
-        public List<Movies> GetNowPlayingMovies(string page = "");
+        List<Movies> GetNowPlayingMovies(string page = "");
     }
 }

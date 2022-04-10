@@ -13,5 +13,6 @@ namespace Application.ViewModels
         public string Channel { get; set; }
         public string Producer { get; set; }
         public string Siciation { get; set; }
+        public int SourceID { get; set; }
     }
 }
