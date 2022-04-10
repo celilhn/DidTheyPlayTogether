@@ -28,6 +28,11 @@ namespace Application.Services
             return mapper.Map<SerieDto>(serieRepository.GetSerie(name));
         }
 
+        public SerieDto GetSerieByOriginalName(string originalName)
+        {
+            return mapper.Map<SerieDto>(serieRepository.GetSerieByOriginalName(originalName));
+        }
+
         public SerieDto SaveSerie(SerieDto serie)
         {
             if (serie.ID > 0)
