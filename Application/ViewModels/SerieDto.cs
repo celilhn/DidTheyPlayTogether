@@ -14,5 +14,10 @@ namespace Application.ViewModels
         public string Producer { get; set; }
         public string Siciation { get; set; }
         public int SourceID { get; set; }
+        public string OriginalName { get; set; }
+        public string Country { get; set; }
+        public string Language { get; set; }
+        public string PosterPath { get; set; }
+        public string Description { get; set; }
     }
 }

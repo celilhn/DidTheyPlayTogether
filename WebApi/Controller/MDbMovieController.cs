@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Domain.Constants.Constants;
 
 namespace WebApi.Controller
 {
@@ -54,7 +55,7 @@ namespace WebApi.Controller
                                 }
                             }
                             film.Subject = movie.overview;
-                            film.SourceID = 1;
+                            film.SourceID = (int)SourceTypes.MovieDb;
                             film = filmService.SaveFilm(film);
                             counterofAdded++;
                         }

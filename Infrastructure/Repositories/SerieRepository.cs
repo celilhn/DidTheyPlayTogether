@@ -34,6 +34,11 @@ namespace Infrastructure.Repositories
             return context.Series.Where(x => x.Name == name).SingleOrDefault();
         }
 
+        public Serie GetSerieByOriginalName(string originalName)
+        {
+            return context.Series.Where(x => x.OriginalName == originalName).SingleOrDefault();
+        }
+
         public Serie UpdateSerie(Serie serie)
         {
             context.Entry(serie).State = EntityState.Modified;

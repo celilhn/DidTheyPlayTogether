@@ -11,6 +11,7 @@ namespace Application.Interfaces
     {
         SerieDto GetSerie(int ID); 
         SerieDto GetSerie(string name);
+        SerieDto GetSerieByOriginalName(string originalName);
         SerieDto SaveSerie(SerieDto serie);
     }
 }
