@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DidTheyPlayTogetherDbContext))]
-    [Migration("20220404140051_init")]
+    [Migration("20220410143921_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,6 +63,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Education")
                         .HasColumnType("varchar(200)");
 
+                    b.Property<byte>("Gender")
+                        .HasColumnType("tinyint");
+
                     b.Property<DateTime>("InsertionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
@@ -71,8 +74,17 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)");
 
+                    b.Property<int>("Popularity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProfilePath")
+                        .HasColumnType("varchar(200)");
+
                     b.Property<string>("Size")
                         .HasColumnType("varchar(200)");
+
+                    b.Property<int>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
@@ -127,6 +139,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ReleaseDate")
                         .HasColumnType("int");
 
+                    b.Property<int>("SourceID")
+                        .HasColumnType("int");
+
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
@@ -168,9 +183,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime");
-
-                    b.Property<string>("Year")
-                        .HasColumnType("varchar(4)");
 
                     b.HasKey("ID");
 
@@ -220,11 +232,20 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Channel")
                         .HasColumnType("varchar(200)");
 
+                    b.Property<string>("Country")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("varchar(1200)");
+
                     b.Property<int>("FirstEpisodeAirDate")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("InsertionDate")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int>("LastEpisodeAirDate")
                         .HasColumnType("int");
@@ -238,11 +259,20 @@ namespace Infrastructure.Migrations
                     b.Property<int>("NumberofSeasons")
                         .HasColumnType("int");
 
+                    b.Property<string>("OriginalName")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("PosterPath")
+                        .HasColumnType("varchar(200)");
+
                     b.Property<string>("Producer")
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("Siciation")
                         .HasColumnType("varchar(200)");
+
+                    b.Property<int>("SourceID")
+                        .HasColumnType("int");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");

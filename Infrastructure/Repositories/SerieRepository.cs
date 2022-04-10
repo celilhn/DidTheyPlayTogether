@@ -31,12 +31,12 @@ namespace Infrastructure.Repositories
 
         public Serie GetSerie(string name)
         {
-            return context.Series.Where(x => x.Name == name).SingleOrDefault();
+            return context.Series.Where(x => x.Name == name).FirstOrDefault();
         }
 
         public Serie GetSerieByOriginalName(string originalName)
         {
-            return context.Series.Where(x => x.OriginalName == originalName).SingleOrDefault();
+            return context.Series.Where(x => x.OriginalName == originalName).FirstOrDefault();
         }
 
         public Serie UpdateSerie(Serie serie)

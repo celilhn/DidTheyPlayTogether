@@ -33,6 +33,11 @@ namespace Infrastructure.Repositories
             return context.PlayedFilms.Where(x => x.ID == id).SingleOrDefault();
         }
 
+        public PlayedFilm GetPlayedFilm(int filmID, int famousID)
+        {
+            return context.PlayedFilms.Where(x => x.FilmID == filmID & x.FamousID == famousID).FirstOrDefault();
+        }
+
         public List<PlayedFilm> GetPlayedFilmByFilmID(int filmId)
         {
             return context.PlayedFilms.Where(x => x.FilmID == filmId).ToList();

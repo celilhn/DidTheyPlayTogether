@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -31,6 +29,11 @@ namespace Infrastructure.Repositories
         public PlayedSerie GetPlayedSerie(int id)
         {
             return context.PlayedSeries.Where(x => x.ID == id).SingleOrDefault();
+        }
+
+        public PlayedSerie GetPlayedSerie(int famousId, int filmId)
+        {
+            return context.PlayedSeries.Where(x => x.FamousID == famousId & x.FilmID == filmId).SingleOrDefault();
         }
 
         public List<PlayedSerie> GetPlayedSeriesByFamousID(int famousId)

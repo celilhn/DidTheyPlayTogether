@@ -4,6 +4,7 @@ using Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using static Domain.Constants.Constants;
 
 namespace WebApi.Controller
@@ -60,13 +61,21 @@ namespace WebApi.Controller
                                 }
                                 if (knowFor.media_type == MediaTypes.movie.ToString())
                                 {
-                                    playedFilm = SavePlayedFilm(famous, film);
-                                    counterofPlayedFilmAdded++;
+                                    playedFilm = playedFilmService.GetPlayedFilm(famous.ID, film.ID);
+                                    if(playedFilm == null)
+                                    {
+                                        playedFilm = SavePlayedFilm(famous, film);
+                                        counterofPlayedFilmAdded++;
+                                    }
                                 }
                                 else if(knowFor.media_type == MediaTypes.tv.ToString())
                                 {
-                                    playedSerie = SavePlayedSerie(famous, film);
-                                    counterofPlayedSerieAdded++;
+                                    playedSerie = playedSerieService.GetPlayedSerie(famous.ID, film.ID);
+                                    if(playedSerie == null)
+                                    {
+                                        playedSerie = SavePlayedSerie(famous, film);
+                                        counterofPlayedSerieAdded++;
+                                    }
                                 }
                             }
                         }
@@ -109,7 +118,13 @@ namespace WebApi.Controller
                 film.Name = knowFor.name;
                 film.OriginalName = knowFor.original_title;
                 film.PosterPath = knowFor.poster_path;
-                film.ReleaseDate = Convert.ToInt32(knowFor.release_date.Substring(0, 4));
+                if (knowFor.release_date != null)
+                {
+                    if (knowFor.release_date.Count() > 3)
+                    {
+                        film.ReleaseDate = Convert.ToInt32(knowFor.release_date.Substring(0, 4));
+                    }
+                }
                 film.Country = "Other";
                 film.Subject = knowFor.overview;
                 film.SourceID = (int)SourceTypes.MovieDb;

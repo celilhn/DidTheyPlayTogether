@@ -27,6 +27,11 @@ namespace Application.Services
             return mapper.Map<PlayedSerieDto>(playedSerieRepository.GetPlayedSerie(id));
         }
 
+        public PlayedSerieDto GetPlayedSerie(int famousId, int filmId)
+        {
+            return mapper.Map<PlayedSerieDto>(playedSerieRepository.GetPlayedSerie(famousId, filmId));
+        }
+
         public List<PlayedSerieDto> GetPlayedSeriesByFamousID(int famousId)
         {
             return mapper.Map<List<PlayedSerieDto>>(playedSerieRepository.GetPlayedSeriesByFamousID(famousId));

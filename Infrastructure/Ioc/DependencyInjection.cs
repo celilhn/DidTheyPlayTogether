@@ -30,12 +30,14 @@ namespace Infrastructure.Ioc
             services.AddScoped<ISerieRepository, SerieRepository>();
             services.AddScoped<IFilmService, FilmService>();
             services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IPlayedFilmService, PlayedFilmService>();
             services.AddScoped<IPlayedFilmRepository, PlayedFilmRepository>();
             services.AddScoped<IMovieDbMovieService, MovieDbMovieService>();
             services.AddScoped<IMovieDbPeopleService, MovieDbPeopleService>();
             services.AddScoped<IMovieDbTvService, MovieDbTvService>();
             services.AddScoped<IHttpUtilities, HttpUtilities>();
-            services.AddScoped<IPlayedFilmService, PlayedFilmService>();
+            services.AddScoped<IPlayedSerieService, PlayedSerieService>();
+            services.AddScoped<IPlayedSerieRepository, PlayedSerieRepository>();
             services.AddDbContext<DidTheyPlayTogetherDbContext>(options => options.UseSqlServer(
                    GetDbConnectionText(),
                    b => b.MigrationsAssembly(typeof(DidTheyPlayTogetherDbContext).Assembly.FullName)));
@@ -51,7 +53,7 @@ namespace Infrastructure.Ioc
 
         private static string GetDbConnectionText()
         {
-            string connectionString = "Data Source=DESKTOP-OUS3O83;Initial Catalog=DIDTHEYPLAYTOGETHER;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = "Data Source=DESKTOP-OUS3O83;Initial Catalog=DIDTHEYPLAYTOGETHER1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             //connectionString = string.Format(connectionString, Environment.GetEnvironmentVariable("FuntasyDbUser"), Environment.GetEnvironmentVariable("FuntasyDbPassword"));
             //Sunucu restartında ne olacağına emin olunmadığı için comment alındı
             return connectionString;

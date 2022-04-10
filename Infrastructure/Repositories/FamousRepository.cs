@@ -22,6 +22,7 @@ namespace Infrastructure.Repositories
             famous.DateBirh = DateTime.Now;
             famous.InsertionDate = DateTime.Now;
             famous.UpdateDate = DateTime.Now;
+            famous.Status = 1;
             context.Famouses.Add(famous);
             context.SaveChanges();
             return famous;

@@ -37,7 +37,7 @@ namespace Infrastructure.Repositories
 
         public Film GetFilmByOriginalName(string originalName)
         {
-            return context.Films.Where(x => x.OriginalName == originalName).SingleOrDefault();
+            return context.Films.Where(x => x.OriginalName == originalName).FirstOrDefault();
         }
 
         public Film UpdateFilm(Film film)

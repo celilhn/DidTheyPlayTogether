@@ -6,6 +6,7 @@ using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using static Domain.Constants.Constants;
 
 namespace WebApi.Controller
@@ -47,9 +48,19 @@ namespace WebApi.Controller
                             if(serie != null)
                             {
                                 serie = new SerieDto();
-                                serie.Country = popularTv.OriginCountry[0];
+                                if(popularTv.OriginCountry != null)
+                                {
+                                    serie.Country = popularTv.OriginCountry[0];
+                                }
                                 serie.Description = popularTv.Overview;
-                                serie.FirstEpisodeAirDate = Convert.ToInt32(popularTv.FirstAirDate.Substring(0, 4));
+                                if (popularTv.FirstAirDate != null)
+                                {
+                                    if (popularTv.FirstAirDate.Count() > 3)
+                                    {
+                                        serie.FirstEpisodeAirDate = Convert.ToInt32(popularTv.FirstAirDate.Substring(0, 4));
+                                    }
+                                }
+                                serie.PosterPath = popularTv.PosterPath;
                                 serie.Language = popularTv.OriginalLanguage;
                                 serie.Name = popularTv.Name;
                                 serie.OriginalName = popularTv.OriginalName;

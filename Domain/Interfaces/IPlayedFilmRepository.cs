@@ -10,6 +10,7 @@ namespace Domain.Interfaces
     public interface IPlayedFilmRepository
     {
         PlayedFilm GetPlayedFilm(int id);
+        PlayedFilm GetPlayedFilm(int filmID, int famousID);
         List<PlayedFilm> GetPlayedFilmsByFamousID(int famousId);
         List<PlayedFilm> GetPlayedFilmByFilmID(int filmId);
         PlayedFilm AddPlayedFilm(PlayedFilm playedFilm);
