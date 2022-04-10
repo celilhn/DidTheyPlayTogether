@@ -11,6 +11,7 @@ namespace Infrastructure.MovieDbServices
     {
         private readonly string apiKey = AppUtilities.GetConfigurationValue("MovieApiKey");
         private readonly string URL = AppUtilities.GetConfigurationValue("MovieUrl");
+        private readonly string ImageUrl = AppUtilities.GetConfigurationValue("MovieImageUrl");
         private readonly static string resource = "/person/popular";
         private readonly IHttpUtilities httpUtilities;
         public MovieDbPeopleService(IHttpUtilities httpUtilities)

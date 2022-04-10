@@ -40,6 +40,7 @@ namespace Application.Services
                 serieTemp.NumberofEpisodes = serie.NumberofEpisodes;
                 serieTemp.NumberofSeasons = serie.NumberofSeasons;
                 serieTemp.Producer = serie.Producer;
+                serieTemp.SourceID = serie.SourceID;
                 serieTemp = serieRepository.UpdateSerie(serieTemp);
                 serie = mapper.Map<SerieDto>(serieTemp);
             }

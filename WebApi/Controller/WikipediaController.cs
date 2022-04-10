@@ -137,6 +137,7 @@ namespace WebApi.Controller
                                 serie.FirstEpisodeAirDate = firstEpisodeAirDate;
                                 serie.LastEpisodeAirDate = lastEpisodeAirDate;
                                 serie.Siciation = td[3].InnerText.ToString();
+                                serie.SourceID = 0;
                                 serieService.SaveSerie(serie);
                                 counterofAdded++;
                             }

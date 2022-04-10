@@ -28,5 +28,7 @@ namespace Domain.Models
         public string Producer { get; set; }
         [Column(TypeName = "varchar(200)")]
         public string Siciation { get; set; }
+        [Column(TypeName = "int")]
+        public int SourceID { get; set; }
     }
 }
