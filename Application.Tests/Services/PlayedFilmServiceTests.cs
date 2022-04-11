@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Application.Services;
+using Xunit;
 using Application.Interfaces;
 using Application.ViewModels;
 using System.Collections.Generic;
@@ -36,6 +37,14 @@ namespace Application.Services.Tests
         {
             List<PlayedFilmDto> playedFilm = playedFilmService.GetPlayedFilmsByFamousID(famousId);
             Assert.False(playedFilm == null);
+        }
+
+        [Theory()]
+        [InlineData(2, 3)]
+        public void GetPlayedFilm_IsNull_False1(int filmID, int famousID)
+        {
+            PlayedFilmDto playedFilm = playedFilmService.GetPlayedFilm(filmID, famousID);
+            Assert.False(playedFilm == null)
         }
     }
 }

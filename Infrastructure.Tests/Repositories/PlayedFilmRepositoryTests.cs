@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Infrastructure.Repositories;
+using Xunit;
 using Domain.Interfaces;
 using Domain.Models;
 using System.Collections.Generic;
@@ -60,6 +61,14 @@ namespace Infrastructure.Repositories.Tests
             PlayedFilm playedFilm = playedFilmRepository.GetPlayedFilm(10);
             playedFilm.UpdateDate = DateTime.Now;
             playedFilm = playedFilmRepository.UpdatePlayedFilm(playedFilm);
+            Assert.False(playedFilm == null);
+        }
+
+        [Theory()]
+        [InlineData(3,2)]
+        public void GetPlayedFilm_IsNull_False1(int filmID, int famousID)
+        {
+            PlayedFilm playedFilm = playedFilmRepository.GetPlayedFilm(filmID, famousID);
             Assert.False(playedFilm == null);
         }
     }
