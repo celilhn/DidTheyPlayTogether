@@ -20,13 +20,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{2B918E2D-6BB7-441A-BFC4-AF3FE31B8A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{2D9FCC32-7564-4D1C-9B45-CC19C499AC1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{2D9FCC32-7564-4D1C-9B45-CC19C499AC1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "Infrastructure.Tests\Infrastructure.Tests.csproj", "{6F51020B-6CAF-4229-803F-FE66E96D30D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Tests", "Infrastructure.Tests\Infrastructure.Tests.csproj", "{6F51020B-6CAF-4229-803F-FE66E96D30D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DidTheyPlayTogether.Tests", "DidTheyPlayTogether.Tests\DidTheyPlayTogether.Tests.csproj", "{D3ADAB77-8A1A-47D2-B106-D229B1AEC51E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DidTheyPlayTogether.Tests", "DidTheyPlayTogether.Tests\DidTheyPlayTogether.Tests.csproj", "{D3ADAB77-8A1A-47D2-B106-D229B1AEC51E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Tests", "WebApi.Tests\WebApi.Tests.csproj", "{859DF7D1-488F-44B2-8A19-1AB88F65D6E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.Tests", "WebApi.Tests\WebApi.Tests.csproj", "{859DF7D1-488F-44B2-8A19-1AB88F65D6E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
