@@ -10,5 +10,7 @@ namespace Domain.Interfaces
         Famous GetFamous(int id);
         Famous GetFamous(string name);
         List<Famous> GetFamouses();
+        List<Famous> GetFamousFromWikipedia();
+        List<Famous> GetFamousFromMovieDb();
     }
 }

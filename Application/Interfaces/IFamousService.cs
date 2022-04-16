@@ -9,5 +9,7 @@ namespace Application.Interfaces
         FamousDto GetFamous(int id);
         FamousDto GetFamous(string name);
         List<FamousDto> GetFamouses();
+        List<FamousDto> GetFamousFromWikipedia();
+        List<FamousDto> GetFamousFromMovieDb();
     }
 }
