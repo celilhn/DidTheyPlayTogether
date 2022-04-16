@@ -43,6 +43,16 @@ namespace Infrastructure.Repositories
             return context.Famouses.ToList();
         }
 
+        public List<Famous> GetFamousFromMovieDb()
+        {
+            return context.Famouses.Where(x => x.SourceID == 1).ToList();
+        }
+
+        public List<Famous> GetFamousFromWikipedia()
+        {
+            return context.Famouses.Where(x => x.SourceID == 0).ToList();
+        }
+
         public Famous UpdateFamous(Famous famous)
         {
             context.Entry(famous).State = EntityState.Modified;

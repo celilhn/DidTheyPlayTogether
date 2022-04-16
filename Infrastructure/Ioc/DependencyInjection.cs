@@ -10,6 +10,7 @@ using Application.Utilities;
 using AutoMapper;
 using Domain.Interfaces;
 using Infrastructure.Context;
+using Infrastructure.GoogleServices;
 using Infrastructure.MovieDbServices;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +39,7 @@ namespace Infrastructure.Ioc
             services.AddScoped<IHttpUtilities, HttpUtilities>();
             services.AddScoped<IPlayedSerieService, PlayedSerieService>();
             services.AddScoped<IPlayedSerieRepository, PlayedSerieRepository>();
+            services.AddScoped<IKimdirKimService, KimdirKimService>();
             services.AddDbContext<DidTheyPlayTogetherDbContext>(options => options.UseSqlServer(
                    GetDbConnectionText(),
                    b => b.MigrationsAssembly(typeof(DidTheyPlayTogetherDbContext).Assembly.FullName)));

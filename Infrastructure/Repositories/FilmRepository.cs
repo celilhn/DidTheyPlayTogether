@@ -32,12 +32,12 @@ namespace Infrastructure.Repositories
 
         public Film GetFilm(string name)
         {
-            return context.Films.Where(x => x.Name == name).SingleOrDefault();
+            return context.Films.Where(x => x.Name.Contains(name)).SingleOrDefault();
         }
 
         public Film GetFilmByOriginalName(string originalName)
         {
-            return context.Films.Where(x => x.OriginalName == originalName).FirstOrDefault();
+            return context.Films.Where(x => x.OriginalName.Contains(originalName)).FirstOrDefault();
         }
 
         public Film UpdateFilm(Film film)
